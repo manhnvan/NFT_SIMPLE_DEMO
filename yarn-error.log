@@ -1,0 +1,49 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\DELL\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js dev
+
+PATH: 
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\DELL\bin;C:\Python38\Scripts;C:\Python38;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Users\DELL\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\MongoDB\Server\4.2\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\DELL\AppData\Local\Microsoft\WindowsApps;C:\Users\DELL\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Program Files\JetBrains\WebStorm 2020.1.3\bin;C:\Program Files\MongoDB\Server\4.2;C:\flutter\bin;C:\Program Files\Java\jdk-13.0.1\bin;C:\Users\DELL\AppData\Roaming\Composer\vendor\bin;C:\Users\DELL\Downloads\cmder;C:\Users\DELL\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  16.6.2
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: C:\Users\DELL\OneDrive\Desktop\nft-quickstart\package.json: Unexpected token } in JSON at position 145
+      at JSON.parse (<anonymous>)
+      at C:\Users\DELL\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\DELL\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\DELL\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "nft-quickstart",
+    "version": "1.0.0",
+    "description": "",
+    "main": "truffle-config.js",
+    "directories": {
+      "test": "test",
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "dev": "lite-server"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "@openzeppelin/contracts": "^4.3.1",
+      "lite-server": "^2.6.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
