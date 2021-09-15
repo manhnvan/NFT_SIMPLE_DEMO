@@ -24,6 +24,7 @@
         <script>
             const renderListCharacter = async () => {
                 const tokenIds = await ERC721Sm.getAllNotOwnToken();
+                console.log(tokenIds);
                 $("#list-character").empty();
                 tokenIds.forEach(async id => {
                     const detail = await ERC721Sm.getTokenDetail(id);
