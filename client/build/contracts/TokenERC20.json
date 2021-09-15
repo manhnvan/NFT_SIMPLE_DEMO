@@ -10114,19 +10114,19 @@
     "absolutePath": "project:/contracts/TokenERC20.sol",
     "exportedSymbols": {
       "Context": [
-        2424
+        2417
       ],
       "ERC20": [
-        1025
+        1018
       ],
       "IERC20": [
-        1103
+        1096
       ],
       "IERC20Metadata": [
-        1128
+        1121
       ],
       "Ownable": [
-        479
+        472
       ],
       "TokenERC20": [
         66
@@ -10153,7 +10153,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 67,
-        "sourceUnit": 1026,
+        "sourceUnit": 1019,
         "src": "59:71:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -10165,7 +10165,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 67,
-        "sourceUnit": 480,
+        "sourceUnit": 473,
         "src": "132:68:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -10178,7 +10178,7 @@
               "id": 37,
               "name": "ERC20",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1025,
+              "referencedDeclaration": 1018,
               "src": "227:5:1"
             },
             "id": 38,
@@ -10190,7 +10190,7 @@
               "id": 39,
               "name": "Ownable",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 479,
+              "referencedDeclaration": 472,
               "src": "234:7:1"
             },
             "id": 40,
@@ -10204,11 +10204,11 @@
         "id": 66,
         "linearizedBaseContracts": [
           66,
-          479,
-          1025,
-          1128,
-          1103,
-          2424
+          472,
+          1018,
+          1121,
+          1096,
+          2417
         ],
         "name": "TokenERC20",
         "nameLocation": "213:10:1",
@@ -10258,7 +10258,7 @@
                   "id": 46,
                   "name": "ERC20",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1025,
+                  "referencedDeclaration": 1018,
                   "src": "305:5:1"
                 },
                 "nodeType": "ModifierInvocation",
@@ -10390,7 +10390,7 @@
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 885,
+                      "referencedDeclaration": 878,
                       "src": "409:5:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -10512,19 +10512,19 @@
     "absolutePath": "project:/contracts/TokenERC20.sol",
     "exportedSymbols": {
       "Context": [
-        2424
+        2417
       ],
       "ERC20": [
-        1025
+        1018
       ],
       "IERC20": [
-        1103
+        1096
       ],
       "IERC20Metadata": [
-        1128
+        1121
       ],
       "Ownable": [
-        479
+        472
       ],
       "TokenERC20": [
         66
@@ -10551,7 +10551,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 67,
-        "sourceUnit": 1026,
+        "sourceUnit": 1019,
         "src": "59:71:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -10563,7 +10563,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 67,
-        "sourceUnit": 480,
+        "sourceUnit": 473,
         "src": "132:68:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -10576,7 +10576,7 @@
               "id": 37,
               "name": "ERC20",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1025,
+              "referencedDeclaration": 1018,
               "src": "227:5:1"
             },
             "id": 38,
@@ -10588,7 +10588,7 @@
               "id": 39,
               "name": "Ownable",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 479,
+              "referencedDeclaration": 472,
               "src": "234:7:1"
             },
             "id": 40,
@@ -10602,11 +10602,11 @@
         "id": 66,
         "linearizedBaseContracts": [
           66,
-          479,
-          1025,
-          1128,
-          1103,
-          2424
+          472,
+          1018,
+          1121,
+          1096,
+          2417
         ],
         "name": "TokenERC20",
         "nameLocation": "213:10:1",
@@ -10656,7 +10656,7 @@
                   "id": 46,
                   "name": "ERC20",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1025,
+                  "referencedDeclaration": 1018,
                   "src": "305:5:1"
                 },
                 "nodeType": "ModifierInvocation",
@@ -10788,7 +10788,7 @@
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 885,
+                      "referencedDeclaration": 878,
                       "src": "409:5:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -10984,12 +10984,12 @@
         }
       },
       "links": {},
-      "address": "0xC0dF96d01736ea5c0E720Eb121951a9ef0966C9D",
-      "transactionHash": "0x8c9b1f0a20b8afb21cf5c0b058b178c69c703faa38f1027e4639379c608e8e86"
+      "address": "0x5e2A1690b6fE9A9486F0A8CF2CB68a5D985BEB61",
+      "transactionHash": "0x57440346b40ddd3430e9d138d620e0f2916c420e5db2088e274d7dff9c197256"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-15T07:42:15.504Z",
+  "updatedAt": "2021-09-15T10:35:25.251Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

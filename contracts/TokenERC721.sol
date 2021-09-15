@@ -53,17 +53,17 @@ contract TokenERC721 is ERC721, Ownable {
     }
 
     function getAllNotOwnToken() public view returns(uint256[] memory) {
-        uint256 tokenCount = balanceOf(msg.sender);
-        uint256 totalNotOwn = nextId - tokenCount;
-        if (totalNotOwn == 0) {
+        address owner = owner();
+        uint256 tokenCount = balanceOf(owner);
+        if (tokenCount == 0) {
             return new uint256[](0);
         } else {
-            uint[] memory result = new uint256[](totalNotOwn);
+            uint[] memory result = new uint256[](tokenCount);
             uint256 total = nextId;
             uint256 resultIndex = 0;
             uint256 i;
             for (i = 0; i < total; i++) {
-                if (ownerOf(i) != msg.sender) {
+                if (ownerOf(i) == owner) {
                     result[resultIndex] = i;
                     resultIndex++;
                 }
@@ -77,7 +77,7 @@ contract TokenERC721 is ERC721, Ownable {
         address owner = owner();
         require(ownerOf(tokenId) == owner, "This token belong to someone");
         _safeTransfer(owner, msg.sender, tokenId, "");
-        emit BuyToken(tokenId, ownerOf(tokenId) == owner);
+        emit BuyToken(tokenId, true);
         return true;
     }
 }

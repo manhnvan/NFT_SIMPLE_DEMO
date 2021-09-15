@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Market Place</title>
+        <title>My Token</title>
         <meta name="description" content="">
         <link rel="stylesheet" href="./styles/market_place.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
     </head>
     <body>
         <div class="container mt-5">
-            <h1>Market place</h1>
+            <h1>My Token</h1>
             <div id="balance-of"></div>
             <div class="list-character row" id="list-character">
             </div>
@@ -21,10 +21,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
         <script src="./scripts/initContract.js"></script>
-        <script src="./scripts/marketPlace.js"></script>
         <script>
-            const renderListCharacter = async () => {
-                const tokenIds = await ERC721Sm.getAllNotOwnToken();
+            const renderMyListCharacter = async () => {
+                const tokenIds = await ERC721Sm.getAllTokenForUser();
                 $("#list-character").empty();
                 tokenIds.forEach(async id => {
                     const detail = await ERC721Sm.getTokenDetail(id);
@@ -45,7 +44,6 @@
                                         <div class="card-text yellow col-6">Yellow Jelly: ${Math.round(detail.yellow_barricade * 100) / 100}</div>
                                         <div class="card-text ping col-6">Ping Jelly: ${Math.round(detail.ping_barricade * 100) / 100}</div>
                                     </div>
-                                    <button class="btn btn-primary" onclick="buyToken(${id})">Mua</button>
                                 </div>
                             </div>
                         </div>
@@ -54,23 +52,18 @@
                 });
             }
 
-            async function buyToken(tokenId) {
-                const res = await ERC721Sm.buyToken(tokenId)
-                window.location.href = "http://localhost:3000/market_place.html"
-            }
-
             async function renderBalance() {
                 $("#balance-of").empty();
                 const balance = await ERC721Sm.getBalance(ERC721Sm.account);
                 const balanceElement = `<h3>Đã sở hữu: ${balance} nhân vật</h3>`;
+
                 $("#balance-of").append(balanceElement);
             }
 
             $(() => {
                 $(window).load(async () => {
-                    console.log(ERC721Sm)
                     await ERC721Sm.load()
-                    renderListCharacter()
+                    renderMyListCharacter()
                     renderBalance()
                 })
             })
