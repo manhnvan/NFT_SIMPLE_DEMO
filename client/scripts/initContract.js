@@ -7,7 +7,6 @@ var ERC721Sm = {
         await ERC721Sm.loadWeb3()
         await ERC721Sm.loadAccount()
         await ERC721Sm.loadContract()
-        await ERC721Sm.getTokenDetail(1)
         await ERC721Sm.getBalance(ERC721Sm.account)
     },
 
@@ -71,7 +70,6 @@ var ERC721Sm = {
     getTokenDetail: async (tokenId) => {
         const cid = await ERC721Sm.erc721.getTokenDetails(tokenId);
         const detail = await axios.get(`https://ipfs.io/ipfs/${cid}`)
-        console.log(detail.data)
         return detail.data;
     },
 
@@ -87,11 +85,4 @@ var ERC721Sm = {
         const {returnValues} = result[0]
         return returnValues
     }
-
 }
-
-$(() => {
-    $(window).load(() => {
-        ERC721Sm.load()
-    })
-})
