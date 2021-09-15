@@ -110,7 +110,11 @@ let runScreenManager = {
 
         backButton.interactive = true;
         backButton.buttonMode = true;
-        backButton.on('pointerup', () => changeScreen(Screen.ROOM))
+        backButton.on('pointerup', () => {
+            player.instance.position.x = 50
+            competitor.instance.position.x = 50
+            changeScreen(Screen.ROOM)
+        })
         // add to screen
         backButton.addChild(backText)
         runScreen.addChild(backButton)
