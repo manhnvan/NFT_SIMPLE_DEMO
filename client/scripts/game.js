@@ -64,4 +64,15 @@ window.onload = function () {
         `
         $("#monsters-for-competitor").append(elemCompetitor)
     }
+
+    const listMonstersPlayerElem = document.querySelectorAll("#monsters-for-player .flip-card");
+    const listMonstersCompetitorElem = document.querySelectorAll("#monsters-for-competitor .flip-card");
+    let i = 0;
+    const loop = setInterval(() => {
+        listMonstersPlayerElem[i].classList.add("flip-card-flip")
+        listMonstersCompetitorElem[i].classList.add("flip-card-flip")
+        i++;
+        if (i >= 6) clearInterval(loop)
+    }, 1000)
+
 }
