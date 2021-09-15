@@ -1,16 +1,14 @@
-App = {
+var App = {
     loading: false,
     contracts: {},
     account: null,
 
     load: async () => {
-        console.log('loading')
         await App.loadWeb3()
         await App.loadAccount()
         await App.loadContract()
         await App.getTokenDetail(1)
         await App.getBalance(App.account)
-        await App.buyToken(0)
     },
 
     loadWeb3: async () => {
@@ -48,7 +46,6 @@ App = {
         // Set the current blockchain account
         const accounts = await web3.eth.getAccounts() 
         App.account = accounts[0]
-        console.log(accounts)
     },
     loadContract: async () => {
         // Create a JavaScript version of the smart contract
@@ -65,26 +62,29 @@ App = {
         return tokenIds
     },
 
+    getAllNotOwnToken: async () => {
+        const tokens = await App.erc721.getAllNotOwnToken({from: App.account});
+        const tokenIds = tokens.map(token => token.toNumber());
+        return tokenIds
+    },
+
     getTokenDetail: async (tokenId) => {
         const cid = await App.erc721.getTokenDetails(tokenId);
-        console.log(cid)
         const detail = await axios.get(`https://ipfs.io/ipfs/${cid}`)
-        console.log(detail.data)
         return detail;
     },
 
     getBalance: async (address) => {
         const balance = await App.erc721.balanceOf(address);
-        console.log(balance.toNumber())
+        return balance.toNumber()
     },
 
     buyToken: async (tokenId) => {
         const amount = web3.utils.toWei('1', "ether");
         const tx = await App.erc721.buyToken(tokenId, {from: App.account, value: amount})
         const result = await App.erc721.getPastEvents('BuyToken', {})
-        console.log(result)
         const {returnValues} = result[0]
-        console.log(returnValues)
+        return returnValues
     }
 
 }
