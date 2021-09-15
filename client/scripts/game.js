@@ -31,6 +31,7 @@ function createHTMLCard(imageSrc) {
 
 
 window.onload = function () {
+    ERC721Sm.load()
     // create monsters
     const [monstersForPlayer, monstersForCompetitor] = useCreateMonsters();
 
