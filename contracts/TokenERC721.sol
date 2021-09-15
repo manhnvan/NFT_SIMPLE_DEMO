@@ -11,6 +11,8 @@ contract TokenERC721 is ERC721, Ownable {
 
     mapping (uint => string) private _tokenUri;
 
+    event BuyToken(uint tokenId, bool success);
+
     TokenERC20 private erc20Token; 
 
     constructor(string memory _name, string memory _symbol, address _erc20Token) ERC721(_name, _symbol) {
@@ -70,10 +72,12 @@ contract TokenERC721 is ERC721, Ownable {
         }
     }
 
-    function buyToken(uint tokenId) public payable {
+    function buyToken(uint tokenId) public payable returns (bool) {
         require(msg.value > 0.5 ether, "Please send more ether");
         address owner = owner();
         require(ownerOf(tokenId) == owner, "This token belong to someone");
         _safeTransfer(owner, msg.sender, tokenId, "");
+        emit BuyToken(tokenId, ownerOf(tokenId) == owner);
+        return true;
     }
 }

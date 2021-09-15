@@ -125,7 +125,6 @@ let runScreenManager = {
     },
 
     status() {
-        console.log(this)
     }
 }
 
@@ -224,7 +223,6 @@ let roomScreenManager = {
     },
 
     status() {
-        console.log(this)
     }
 }
 
