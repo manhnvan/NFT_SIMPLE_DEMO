@@ -84,5 +84,11 @@ var ERC721Sm = {
         const result = await ERC721Sm.erc721.getPastEvents('BuyToken', {})
         const {returnValues} = result[0]
         return returnValues
+    },
+
+    getMyGoldValue: async () => {
+        console.log(ERC721Sm.erc721)
+        const myGold = await ERC721Sm.erc721.getBalanceOferc20(ERC721Sm.account);
+        return myGold.toNumber()
     }
 }
