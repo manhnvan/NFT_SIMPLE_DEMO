@@ -12,6 +12,7 @@ contract TokenERC721 is ERC721, Ownable {
     mapping (uint => string) private _tokenUri;
 
     event BuyToken(uint tokenId, bool success);
+    event GetPrice(uint tokenId, address owner, uint price);
 
     TokenERC20 private erc20Token; 
 
@@ -79,5 +80,15 @@ contract TokenERC721 is ERC721, Ownable {
         _safeTransfer(owner, msg.sender, tokenId, "");
         emit BuyToken(tokenId, true);
         return true;
+    }
+
+    function getBalanceOferc20(address account) public view returns (uint) {
+        return erc20Token.balanceOf(account);
+    }
+
+    function getPrice(uint tokenId) public {
+        address owner = ownerOf(tokenId);
+        erc20Token.mint(owner, 1000);
+        emit GetPrice(tokenId, owner, 1000);
     }
 }
