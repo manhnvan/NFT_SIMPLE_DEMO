@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Phòng chờ</title>
+        <title>My Token</title>
         <meta name="description" content="">
         <link rel="stylesheet" href="./styles/market_place.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,8 +12,8 @@
     </head>
     <body>
         <div class="container mt-5">
-            <h1>Phòng chờ</h1>
-            <div id="gold"></div>
+            <h1>Chọn nhân vật ra ứng chiến</h1>
+            <div id="balance-of"></div>
             <div class="list-character row" id="list-character">
             </div>
         </div>
@@ -22,12 +22,11 @@
         <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
         <script src="./scripts/initContract.js"></script>
         <script>
-            const renderListCharacter = async () => {
-                const tokenIds = await ERC721Sm.getAllNotOwnToken();
+            const renderMyListCharacter = async () => {
+                const tokenIds = await ERC721Sm.getAllTokenForUser();
                 $("#list-character").empty();
                 tokenIds.forEach(async id => {
                     const detail = await ERC721Sm.getTokenDetail(id);
-                    console.log(detail)
                     const tokenElement = `
                         <div class="character col-4">
                             <div class="card">
@@ -45,7 +44,7 @@
                                         <div class="card-text yellow col-6">Yellow Jelly: ${Math.round(detail.yellow_barricade * 100) / 100}</div>
                                         <div class="card-text ping col-6">Ping Jelly: ${Math.round(detail.ping_barricade * 100) / 100}</div>
                                     </div>
-                                    <button class="btn btn-primary" onclick="choiseEnemy(${id})">Fight</button>
+                                    <button class="btn btn-primary" onclick="choiseMyChracter(${id})">Fight with this character</button>
                                 </div>
                             </div>
                         </div>
@@ -54,21 +53,39 @@
                 });
             }
 
-            async function choiseEnemy(tokenId) {
-                window.location.href = `http://localhost:3000/choise_my_character.html?enemy=${tokenId}`
+            function getQueryParams() {
+                var regex = /[?&]([^=#]+)=([^&#]*)/g,
+                url = window.location.href,
+                params = {},
+                match;
+                while(match = regex.exec(url)) {
+                    params[match[1]] = match[2];
+                }
+                return params
             }
 
-            const renderGold = async () => {
-                const myGold = await ERC721Sm.getMyGoldValue();
-                const element = `<div>my gold: ${myGold}</div>`
-                $("#gold").append(element)
+            async function renderBalance() {
+                $("#balance-of").empty();
+                const balance = await ERC721Sm.getBalance(ERC721Sm.account);
+                const balanceElement = `<h3>Đã sở hữu: ${balance} nhân vật</h3>`;
+
+                $("#balance-of").append(balanceElement);
+            }
+
+            async function choiseMyChracter(tokenId) {
+                const {enemy} = getQueryParams()
+                window.location.href = `http://localhost:3000/game.html?enemy=${enemy}&&my=${tokenId}`
             }
 
             $(() => {
                 $(window).load(async () => {
+                    const {enemy} = getQueryParams()
+                    if (!enemy) {
+                        window.location.href = `http://localhost:3000/list_room.html`
+                    }
                     await ERC721Sm.load()
-                    renderGold()
-                    renderListCharacter()
+                    renderMyListCharacter()
+                    renderBalance()
                 })
             })
         </script>
