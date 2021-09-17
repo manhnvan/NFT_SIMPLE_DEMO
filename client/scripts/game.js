@@ -78,7 +78,7 @@ window.onload = async function () {
                 </div>
             </div>
             `
-            $(`#monsters-land-${roadIdx+1}`).append(elemPlayer)
+            $(`#monsters-land-${roadIdx + 1}`).append(elemPlayer)
 
         }
     }
@@ -88,7 +88,7 @@ window.onload = async function () {
     const monsterLand3Elem = document.querySelectorAll("#monsters-land-3 .flip-card");
     const monsterLand4Elem = document.querySelectorAll("#monsters-land-4 .flip-card");
     const monsterLand5Elem = document.querySelectorAll("#monsters-land-5 .flip-card");
-
+    // start variable
     let i = 0;
 
     let roadPlayer = 0;
@@ -100,24 +100,33 @@ window.onload = async function () {
     let playerPoint = playerStartPoint;
     let competitorPoint = competitorStartPoint;
 
-    window.onkeyup = (e) => {
+    flipNext()
+
+    document.getElementById(`monster-${playerPoint}-${i}`).parentNode.classList.add("player-point")
+    document.getElementById(`monster-${competitorPoint}-${i}`).parentNode.classList.add("competitor-point")
+
+    i += 1;
+    flipNext()
+
+    addEventListener("keyup", (e) => {
+        handleKeyUp(e)
+    })
+
+    function handleKeyUp (e) {
         if (e.keyCode === 40) {
+            document.getElementById(`monster-${playerPoint}-${i}`).parentNode.classList.remove("player-point")
             playerPoint += playerPoint >= 0 && playerPoint < 4 ? 1 : 0
+            document.getElementById(`monster-${playerPoint}-${i}`).parentNode.classList.add("player-point")
         } else if (e.keyCode === 38) {
+            document.getElementById(`monster-${playerPoint}-${i}`).parentNode.classList.remove("player-point")
             playerPoint -= playerPoint > 0 && playerPoint < 5 ? 1 : 0
+            document.getElementById(`monster-${playerPoint}-${i}`).parentNode.classList.add("player-point")
+        } else if (e.keyCode === 32) {
+            document.getElementById(`monster-${playerPoint}-${i}`).parentNode.classList.remove("player-point")
+            playerPoint += 0
+            document.getElementById(`monster-${playerPoint}-${i}`).parentNode.classList.add("player-point")
         }
-    }
 
-    const loop = setInterval(() => {
-
-        competitorPoint += (Math.random() < 0.7 ? (Math.random() < 0.4 ? -1 : 0) : 1);
-        if (competitorPoint < 0) {
-            competitorPoint = 0;
-        } else if (competitorPoint >= 4) {
-            competitorPoint = 4;
-        }
-        document.getElementById(`monster-${playerPoint}-${i}`).parentNode.classList.add("player-point")
-        document.getElementById(`monster-${competitorPoint}-${i}`).parentNode.classList.add("competitor-point")
         switch (monsterMap[playerPoint][i]) {
             case 1:
                 roadPlayer += (playerTemp.red_barricade * playerTemp.base_speed)
@@ -137,6 +146,13 @@ window.onload = async function () {
             case 6:
                 roadPlayer += (playerTemp.black_barricade * playerTemp.base_speed)
                 break;
+        }
+
+        competitorPoint += (Math.random() < 0.7 ? (Math.random() < 0.4 ? -1 : 0) : 1);
+        if (competitorPoint < 0) {
+            competitorPoint = 0;
+        } else if (competitorPoint >= 4) {
+            competitorPoint = 4;
         }
 
         switch (monsterMap[competitorPoint][i]) {
@@ -159,28 +175,26 @@ window.onload = async function () {
                 roadCompetitor += (competitorTemp.black_barricade * competitorTemp.base_speed)
                 break;
         }
+
+        document.getElementById(`monster-${competitorPoint}-${i}`).parentNode.classList.add("competitor-point")
+        i++;
+        if (i >= NUMBER_OF_MONSTER) {
+
+            if (roadPlayer > roadCompetitor) {
+                ERC721Sm.getPrice(my)
+                alert("Win")
+            } else {
+                alert("Lose")
+            }
+        }
+        flipNext()
+    }
+
+    function flipNext() {
         monsterLand1Elem[i].classList.add("flip-card-flip")
         monsterLand2Elem[i].classList.add("flip-card-flip")
         monsterLand3Elem[i].classList.add("flip-card-flip")
         monsterLand4Elem[i].classList.add("flip-card-flip")
         monsterLand5Elem[i].classList.add("flip-card-flip")
-        i++;
-
-        if (i >= NUMBER_OF_MONSTER) {
-
-            if (roadPlayer > roadCompetitor) {
-                console.log(roadPlayer, roadCompetitor)
-                ERC721Sm.getPrice(my)
-                console.log("Win")
-            } else {
-                console.log(roadPlayer, roadCompetitor)
-                console.log("Lose")
-            }
-            // window.location.href = `http://localhost:3000/list_room.html`
-            clearInterval(loop)
-        }
-
-    }, 1000)
-
-
+    }
 }
